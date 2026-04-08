@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jingyu - Personal Homepage</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        /* ===== 整体布局 ===== */
+        .wrapper {
+            display: flex;
+            max-width: 1100px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        /* ===== 左侧边栏 ===== */
+        .sidebar {
+            width: 280px;
+            background: #fff;
+            padding: 40px 24px;
+            text-align: center;
+            border-right: 1px solid #e8e8e8;
+            flex-shrink: 0;
+        }
+        .avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 48px;
+            font-weight: bold;
+        }
+        .sidebar h1 {
+            font-size: 1.4em;
+            margin-bottom: 4px;
+            color: #222;
+        }
+        .sidebar .title {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        .sidebar .affiliation {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        .contact-list {
+            list-style: none;
+            text-align: left;
+            padding: 0 8px;
+        }
+        .contact-list li {
+            padding: 6px 0;
+            font-size: 0.9em;
+            color: #555;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .contact-list li:last-child { border-bottom: none; }
+        .contact-list li span.label {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+            margin-right: 8px;
+        }
+        .contact-list a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .contact-list a:hover { text-decoration: underline; }
+
+        /* ===== 右侧主内容 ===== */
+        .main {
+            flex: 1;
+            background: #fff;
+            padding: 40px 48px;
+        }
+
+        /* 导航标签 */
+        .nav-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid #e8e8e8;
+            margin-bottom: 32px;
+        }
+        .nav-tabs a {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #666;
+            font-size: 0.95em;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+        .nav-tabs a:hover { color: #333; }
+        .nav-tabs a.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        /* 页面区块 */
+        .page { display: none; }
+        .page.active { display: block; }
+
+        .section { margin-bottom: 32px; }
+        .section h2 {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+            display: inline-block;
+        }
+        .section p { margin-bottom: 10px; color: #444; }
+
+        /* 教育/经历条目 */
+        .entry {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: #fafafa;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+        .entry-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .entry-content h3 {
+            font-size: 1.05em;
+            color: #333;
+            margin-bottom: 2px;
+        }
+        .entry-content .meta {
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 4px;
+        }
+        .entry-content p {
+            font-size: 0.95em;
+            color: #555;
+            margin: 0;
+        }
+
+        /* 论文列表 */
+        .pub-item {
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .pub-item:last-child { border-bottom: none; }
+        .pub-item .pub-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 1em;
+        }
+        .pub-item .pub-authors {
+            font-size: 0.9em;
+            color: #666;
+            margin: 4px 0;
+        }
+        .pub-item .pub-venue {
+            font-size: 0.85em;
+            color: #888;
+            font-style: italic;
+        }
+        .pub-item .pub-links a {
+            font-size: 0.85em;
+            color: #667eea;
+            text-decoration: none;
+            margin-right: 12px;
+        }
+        .pub-item .pub-links a:hover { text-decoration: underline; }
+
+        /* 技能标签 */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .skill-tag {
+            background: #eef0fb;
+            color: #667eea;
+            padding: 4px 14px;
+            border-radius: 16px;
+            font-size: 0.85em;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 768px) {
+            .wrapper { flex-direction: column; }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #e8e8e8;
+                padding: 24px 20px;
+            }
+            .main { padding: 24px 20px; }
+            .nav-tabs a { padding: 8px 12px; font-size: 0.85em; }
+            .avatar { width: 120px; height: 120px; font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- ====== 左侧边栏 ====== -->
+    <div class="sidebar">
+        <!-- 头像：改成你名字的首字母 -->
+        <div class="avatar">HE</div>
+        <h1>HE Jingyu</h1>
+        <p class="title">PhD candidate</p>
+        <p class="affiliation">HK POLYU</p>
+
+        <ul class="contact-list">
+            <li><span class="label">📧</span> <a href="mailto:jingyu.he@connect.polyu.hk">@email-me </a></li>
+            <li><span class="label">📍</span> Hong Kong</li>
+        </ul>
+    </div>
+
+    <!-- ====== 右侧主内容 ====== -->
+    <div class="main">
+
+        <!-- 导航 -->
+        <div class="nav-tabs">
+            <a href="#" class="active" onclick="showPage('about', this)">About</a>
+            <a href="#" onclick="showPage('publications', this)">Publications</a>
+            <a href="#" onclick="showPage('experience', this)">Experience</a>
+            <a href="#" onclick="showPage('awards', this)">Awards</a>
+        </div>
+
+        <!-- ====== About 页面 ====== -->
+        <div id="about" class="page active">
+            <div class="section">
+                <h2>About Me</h2>
+                <p>
+                    I was born in Xi'an City in 1998.
+                </p>
+                <!-- <p>
+                    我的研究兴趣集中在以下几个方面：
+                </p>
+                <div class="skill-tags">
+                    <span class="skill-tag">研究方向1</span>
+                    <span class="skill-tag">研究方向2</span>
+                    <span class="skill-tag">研究方向3</span>
+                    <span class="skill-tag">研究方向4</span>
+                </div> -->
+            </div>
+
+            <div class="section">
+                <h2>Education</h2>
+
+                <div class="entry">
+                    <div class="entry-icon">🎓</div>
+                    <div class="entry-content">
+                        <h3>HK POLYU</h3>
+                        <div class="meta">PhD · Applied Physics · 2022 - Now</div>
+                        <p>Supervisor: Prof. YANG Ming</p>
+                        <p>Co-supervisor: Prof. LOH Kian-Ping</p>
+                    </div>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-icon">🎓</div>
+                    <div class="entry-content">
+                        <h3>NUS</h3>
+                        <div class="meta">MSc · Physics · 2021 - 2022</div>
+                        <p>Supervisor: Prof. FENG Yuan-Ping</p>
+                        <p>Co-supervisor: Dr. ZHOU Jun</p>
+                    </div>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-icon">🎓</div>
+                    <div class="entry-content">
+                        <h3>BIT</h3>
+                        <div class="meta">BS · Physics · 2016 - 2020</div>
+                    </div>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-icon">🎓</div>
+                    <div class="entry-content">
+                        <h3>Xi'an Tieyi High school</h3>
+                        <div class="meta">secondary school · 2011 - 2016</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Skills</h2>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">atomic simulation</span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <!-- ====== Publications 页面 ====== -- >
+        <div id="publications" class="page" style="overflow: hidden; word-break: break-all;">
+            <div class="section">
+                <h2>Publications</h2>
+
+                <div class="pub-item">
+                    <div class="pub-title">论文标题写在这里</div>
+                    <div class="pub-authors"><strong>你的名字</strong>, 合作者A, 合作者B</div>
+                    <div class="pub-venue">会议/期刊名称, 2025</div>
+                    <div class="pub-links">
+                        <a href="#">[PDF]</a>
+                        <a href="#">[Code]</a>
+                        <a href="#">[BibTeX]</a>
+                    </div>
+                </div>
+
+                <div class="pub-item">
+                    <div class="pub-title">第二篇论文标题</div>
+                    <div class="pub-authors">合作者A, <strong>你的名字</strong>, 合作者C</div>
+                    <div class="pub-venue">另一个会议/期刊名称, 2024</div>
+                    <div class="pub-links">
+                        <a href="#">[PDF]</a>
+                        <a href="#">[Slides]</a>
+                    </div>
+                </div>
+
+                <p style="color:#999; font-size:0.9em; margin-top:20px;">（* 表示同等贡献）</p>
+            </div>
+        </div>
+
+        <!-- ====== Experience 页面 ====== -- >
+        <div id="experience" class="page">
+            <div class="section">
+                <h2>Experience</h2>
+
+                <div class="entry">
+                    <div class="entry-icon">💼</div>
+                    <div class="entry-content">
+                        <h3>XX公司 · 研究实习生</h3>
+                        <div class="meta">2024.06 - 2024.09</div>
+                        <p>参与了XXX项目，负责XXX方面的工作。</p>
+                    </div>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-icon">🏫</div>
+                    <div class="entry-content">
+                        <h3>XX大学 · 助教</h3>
+                        <div class="meta">2023.09 - 2024.01</div>
+                        <p>担任《XXX》课程助教。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== Awards 页面 ====== -- >
+        <div id="awards" class="page">
+            <div class="section">
+                <h2>Awards &amp; Honors</h2>
+
+                <div class="entry">
+                    <div class="entry-icon">🏆</div>
+                    <div class="entry-content">
+                        <h3>XX奖学金</h3>
+                        <div class="meta">2024</div>
+                    </div>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-icon">🏅</div>
+                    <div class="entry-content">
+                        <h3>XX竞赛 一等奖</h3>
+                        <div class="meta">2023</div>
+                    </div>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-icon">📜</div>
+                    <div class="entry-content">
+                        <h3>优秀毕业生</h3>
+                        <div class="meta">2022</div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+    </div>
+</div>
+
+<script>
+function showPage(pageId, clickedTab) {
+    // 隐藏所有页面
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    // 取消所有标签高亮
+    document.querySelectorAll('.nav-tabs a').forEach(a => a.classList.remove('active'));
+    // 显示目标页面
+    document.getElementById(pageId).classList.add('active');
+    // 高亮点击的标签
+    clickedTab.classList.add('active');
+    // 阻止链接跳转
+    event.preventDefault();
+}
+</script>
+
+</body>
+</html>
