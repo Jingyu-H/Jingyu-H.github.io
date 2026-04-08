@@ -241,9 +241,9 @@
         <!-- 导航 -->
         <div class="nav-tabs">
             <a href="#" class="active" onclick="showPage('about', this)">About</a>
-            <!-- <a href="#" onclick="showPage('publications', this)">Publications</a>
-            <a href="#" onclick="showPage('experience', this)">Experience</a>
-            <a href="#" onclick="showPage('awards', this)">Awards</a> -->
+            <a href="#" onclick="showPage('arxivLink', this)">arxivLink</a>
+            <!-- <a href="#" onclick="showPage('experience', this)">Experience</a> -->
+            <!-- <a href="#" onclick="showPage('awards', this)">Awards</a> -->
         </div>
 
         <!-- ====== About 页面 ====== -->
@@ -314,6 +314,28 @@
         </div>
 
 
+        <!-- 在你 bio 页面合适的位置加上这段 -->
+        <a href="/arxiv/" target="_blank" style="
+            display:block;
+            max-width:400px;
+            margin:16px auto;
+            padding:20px 24px;
+            background:#667eea;
+            color:#fff;
+            border-radius:12px;
+            text-decoration:none;
+            text-align:center;
+            font-size:1em;
+            box-shadow:0 2px 12px rgba(102,126,234,.35);
+            transition:transform .2s;
+        " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            📄 PaperGraph — 论文关联图谱
+            <span style="display:block;font-size:.8em;opacity:.8;margin-top:4px">搜索 arXiv 论文，可视化关联网络</span>
+        </a>
+
+
+
+        
         <!-- <!-- ====== Publications 页面 ====== -- >
         <div id="publications" class="page" style="overflow: hidden; word-break: break-all;">
             <div class="section">
