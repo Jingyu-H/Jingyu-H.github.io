@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RV9HNQNTM5"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -14,12 +13,6 @@
       gtag('config', 'G-RV9HNQNTM5');
     </script>
 
-
-
-
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jingyu - Personal Homepage</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -98,6 +91,13 @@
             text-decoration: none;
         }
         .contact-list a:hover { text-decoration: underline; }
+
+        /* ClustrMaps 地球仪容器 */
+        .clustrmaps-wrapper {
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+        }
 
         /* ===== 右侧主内容 ===== */
         .main {
@@ -219,6 +219,13 @@
             font-size: 0.85em;
         }
 
+        /* 功能开发时间标注 */
+        .dev-time {
+            font-size: 0.8em;
+            color: #aaa;
+            margin-bottom: 12px;
+        }
+
         /* ===== 响应式 ===== */
         @media (max-width: 768px) {
             .wrapper { flex-direction: column; }
@@ -240,16 +247,21 @@
 
     <!-- ====== 左侧边栏 ====== -->
     <div class="sidebar">
-        <!-- 头像：改成你名字的首字母 -->
         <div class="avatar">HE</div>
         <h1>HE Jingyu</h1>
         <p class="title">PhD candidate</p>
         <p class="affiliation">HK POLYU</p>
 
         <ul class="contact-list">
-            <li><span class="label">📧</span> <a href="mailto:jingyu.he@connect.polyu.hk">@email-me </a></li>
+            <li><span class="label">📧</span> <a href="mailto:jingyu.he@connect.polyu.hk">@email-me</a></li>
             <li><span class="label">📍</span> Hong Kong</li>
+            <li><span class="label">💻</span> <a href="https://github.com/Jingyu-H" target="_blank">GitHub</a></li>
         </ul>
+
+        <!-- ClustrMaps 访客地球仪 -->
+        <div class="clustrmaps-wrapper">
+            <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=N4jYMGcVBYZPDzwUJBfONpYUUA7191N22Wch5oIZ1xQ&cl=ffffff&w=a"></script>
+        </div>
     </div>
 
     <!-- ====== 右侧主内容 ====== -->
@@ -258,30 +270,15 @@
         <!-- 导航 -->
         <div class="nav-tabs">
             <a href="#" class="active" onclick="showPage('about', this)">About</a>
-            <!-- <a href="#" onclick="showPage('arxivlinker1', this)">arxivlinker1</a> -->
             <a href="#" onclick="showPage('autherlinker', this)">autherlinker</a>
             <a href="#" onclick="showPage('journaltaste', this)">journaltaste</a>
-            <!-- <a href="#" onclick="showPage('experience', this)">Experience</a> -->
-            <!-- <a href="#" onclick="showPage('awards', this)">Awards</a> -->
         </div>
 
-        
         <!-- ====== About 页面 ====== -->
         <div id="about" class="page active">
             <div class="section">
                 <h2>About Me</h2>
-                <p>
-                    I was born in Xi'an City in 1998.
-                </p>
-                <!-- <p>
-                    我的研究兴趣集中在以下几个方面：
-                </p>
-                <div class="skill-tags">
-                    <span class="skill-tag">研究方向1</span>
-                    <span class="skill-tag">研究方向2</span>
-                    <span class="skill-tag">研究方向3</span>
-                    <span class="skill-tag">研究方向4</span>
-                </div> -->
+                <p>I was born in Xi'an City in 1998.</p>
             </div>
 
             <div class="section">
@@ -333,181 +330,45 @@
             </div>
         </div>
 
-
-        <!-- link version of this function -->
-        <!-- <a href="https://Jingyu-H.github.io/arxivlinker1/" target="_blank" style="
-            display:block;
-            max-width:400px;
-            margin:16px auto;
-            padding:20px 24px;
-            background:#667eea;
-            color:#fff;
-            border-radius:12px;
-            text-decoration:none;
-            text-align:center;
-            font-size:1em;
-            box-shadow:0 2px 12px rgba(102,126,234,.35);
-            transition:transform .2s;
-        " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-            📄 PaperGraph — 论文关联图谱
-            <span style="display:block;font-size:.8em;opacity:.8;margin-top:4px">搜索 arXiv 论文，可视化关联网络</span>
-        </a> -->
-        
-
-
-
-
-        <!-- <!-- iframe version of function -- >
-        <div id="arxivlinker1" class="page">
-            <iframe 
-                src="https://Jingyu-H.github.io/arxivlinker1/"
-                style="
-                    width: 100%;
-                    height: calc(100vh - 200px);
-                    border: none;
-                    border-radius: 8px;
-                    margin-top: 20px;
-                "
-                title="PaperGraph 论文关联图谱"
-            >
-            </iframe>
-        </div> -->
-
-
-        <!-- iframe version of function -->
+        <!-- ====== autherlinker 页面 ====== -->
         <div id="autherlinker" class="page">
-            <iframe 
+            <p class="dev-time">🕐 Developed: 2025-05</p>
+            <iframe
                 src="https://Jingyu-H.github.io/autherlinker/"
                 style="
                     width: 100%;
                     height: calc(100vh - 200px);
                     border: none;
                     border-radius: 8px;
-                    margin-top: 20px;
                 "
-                title="PaperGraph 论文关联图谱"
-            >
-            </iframe>
+                title="AutherLinker"
+            ></iframe>
         </div>
 
-
-        <!-- iframe version of function -->
+        <!-- ====== journaltaste 页面 ====== -->
         <div id="journaltaste" class="page">
-            <iframe 
+            <p class="dev-time">🕐 Developed: 2025-05</p>
+            <iframe
                 src="https://Jingyu-H.github.io/journaltaste/"
                 style="
                     width: 100%;
                     height: calc(100vh - 200px);
                     border: none;
                     border-radius: 8px;
-                    margin-top: 20px;
                 "
-                title="PaperGraph 论文关联图谱"
-            >
-            </iframe>
+                title="JournalTaste"
+            ></iframe>
         </div>
-
-        
-        <!-- <!-- ====== Publications 页面 ====== -- >
-        <div id="publications" class="page" style="overflow: hidden; word-break: break-all;">
-            <div class="section">
-                <h2>Publications</h2>
-
-                <div class="pub-item">
-                    <div class="pub-title">论文标题写在这里</div>
-                    <div class="pub-authors"><strong>你的名字</strong>, 合作者A, 合作者B</div>
-                    <div class="pub-venue">会议/期刊名称, 2025</div>
-                    <div class="pub-links">
-                        <a href="#">[PDF]</a>
-                        <a href="#">[Code]</a>
-                        <a href="#">[BibTeX]</a>
-                    </div>
-                </div>
-
-                <div class="pub-item">
-                    <div class="pub-title">第二篇论文标题</div>
-                    <div class="pub-authors">合作者A, <strong>你的名字</strong>, 合作者C</div>
-                    <div class="pub-venue">另一个会议/期刊名称, 2024</div>
-                    <div class="pub-links">
-                        <a href="#">[PDF]</a>
-                        <a href="#">[Slides]</a>
-                    </div>
-                </div>
-
-                <p style="color:#999; font-size:0.9em; margin-top:20px;">（* 表示同等贡献）</p>
-            </div>
-        </div>
-
-        <!-- ====== Experience 页面 ====== -- >
-        <div id="experience" class="page">
-            <div class="section">
-                <h2>Experience</h2>
-
-                <div class="entry">
-                    <div class="entry-icon">💼</div>
-                    <div class="entry-content">
-                        <h3>XX公司 · 研究实习生</h3>
-                        <div class="meta">2024.06 - 2024.09</div>
-                        <p>参与了XXX项目，负责XXX方面的工作。</p>
-                    </div>
-                </div>
-
-                <div class="entry">
-                    <div class="entry-icon">🏫</div>
-                    <div class="entry-content">
-                        <h3>XX大学 · 助教</h3>
-                        <div class="meta">2023.09 - 2024.01</div>
-                        <p>担任《XXX》课程助教。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ====== Awards 页面 ====== -- >
-        <div id="awards" class="page">
-            <div class="section">
-                <h2>Awards &amp; Honors</h2>
-
-                <div class="entry">
-                    <div class="entry-icon">🏆</div>
-                    <div class="entry-content">
-                        <h3>XX奖学金</h3>
-                        <div class="meta">2024</div>
-                    </div>
-                </div>
-
-                <div class="entry">
-                    <div class="entry-icon">🏅</div>
-                    <div class="entry-content">
-                        <h3>XX竞赛 一等奖</h3>
-                        <div class="meta">2023</div>
-                    </div>
-                </div>
-
-                <div class="entry">
-                    <div class="entry-icon">📜</div>
-                    <div class="entry-content">
-                        <h3>优秀毕业生</h3>
-                        <div class="meta">2022</div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
 
     </div>
 </div>
 
 <script>
 function showPage(pageId, clickedTab) {
-    // 隐藏所有页面
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    // 取消所有标签高亮
     document.querySelectorAll('.nav-tabs a').forEach(a => a.classList.remove('active'));
-    // 显示目标页面
     document.getElementById(pageId).classList.add('active');
-    // 高亮点击的标签
     clickedTab.classList.add('active');
-    // 阻止链接跳转
     event.preventDefault();
 }
 </script>
