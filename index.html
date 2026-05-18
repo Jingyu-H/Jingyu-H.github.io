@@ -133,6 +133,31 @@
         .page { display: none; }
         .page.active { display: block; }
 
+        /* ===== daily arXiv 宽屏模式 ===== */
+        body.arxiv-wide .wrapper {
+            max-width: none;
+            width: 100%;
+        }
+        
+        body.arxiv-wide .sidebar {
+            display: none;
+        }
+        
+        body.arxiv-wide .main {
+            width: 100%;
+            max-width: none;
+            min-height: 100vh;
+            padding: 24px;
+        }
+        
+        body.arxiv-wide .nav-tabs {
+            margin-bottom: 16px;
+        }
+        
+        body.arxiv-wide #daily-arxiv-frame {
+            height: calc(100vh - 90px) !important;
+        }
+        
         .section { margin-bottom: 32px; }
         .section h2 {
             font-size: 1.3em;
@@ -269,10 +294,10 @@
 
         <!-- 导航 -->
         <div class="nav-tabs">
-            <a href="#" class="active" onclick="showPage('about', this)">About</a>
-            <a href="#" onclick="showPage('autherlinker', this)">autherlinker</a>
-            <a href="#" onclick="showPage('journaltaste', this)">journaltaste</a>
-            <a href="#" onclick="showPage('daily-arxiv')">Daily arXiv</a>
+            <a href="#" class="active" onclick="showPage('about', this, event)">About</a>
+            <a href="#" onclick="showPage('autherlinker', this, event)">autherlinker</a>
+            <a href="#" onclick="showPage('journaltaste', this, event)">journaltaste</a>
+            <a href="#" onclick="showPage('daily-arxiv', this, event)">Daily arXiv</a>
         </div>
 
         <!-- ====== About 页面 ====== -->
@@ -380,14 +405,22 @@
     </div>
 </div>
 
-    
 <script>
-function showPage(pageId, clickedTab) {
+function showPage(pageId, clickedTab, event) {
+    if (event) {
+        event.preventDefault();
+    }
+
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-tabs a').forEach(a => a.classList.remove('active'));
+
     document.getElementById(pageId).classList.add('active');
-    clickedTab.classList.add('active');
-    event.preventDefault();
+
+    if (clickedTab) {
+        clickedTab.classList.add('active');
+    }
+
+    document.body.classList.toggle('arxiv-wide', pageId === 'daily-arxiv');
 }
 </script>
 
